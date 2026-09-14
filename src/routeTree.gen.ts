@@ -11,6 +11,8 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CreditosRouteImport } from './routes/creditos'
+import { Route as DeudasRouteImport } from './routes/deudas'
+import { Route as InversionRouteImport } from './routes/inversion'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +24,49 @@ const CreditosRoute = CreditosRouteImport.update({
   path: '/creditos',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DeudasRoute = DeudasRouteImport.update({
+  id: '/deudas',
+  path: '/deudas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InversionRoute = InversionRouteImport.update({
+  id: '/inversion',
+  path: '/inversion',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/creditos': typeof CreditosRoute
+  '/deudas': typeof DeudasRoute
+  '/inversion': typeof InversionRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/creditos': typeof CreditosRoute
+  '/deudas': typeof DeudasRoute
+  '/inversion': typeof InversionRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/creditos': typeof CreditosRoute
+  '/deudas': typeof DeudasRoute
+  '/inversion': typeof InversionRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/creditos'
+  fullPaths: '/' | '/creditos' | '/deudas' | '/inversion'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/creditos'
-  id: '__root__' | '/' | '/creditos'
+  to: '/' | '/creditos' | '/deudas' | '/inversion'
+  id: '__root__' | '/' | '/creditos' | '/deudas' | '/inversion'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CreditosRoute: typeof CreditosRoute
+  DeudasRoute: typeof DeudasRoute
+  InversionRoute: typeof InversionRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +85,28 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CreditosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/deudas': {
+      id: '/deudas'
+      path: '/deudas'
+      fullPath: '/deudas'
+      preLoaderRoute: typeof DeudasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/inversion': {
+      id: '/inversion'
+      path: '/inversion'
+      fullPath: '/inversion'
+      preLoaderRoute: typeof InversionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CreditosRoute: CreditosRoute,
+  DeudasRoute: DeudasRoute,
+  InversionRoute: InversionRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
