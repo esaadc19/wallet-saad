@@ -41,7 +41,7 @@ export const etiquetaMes = (m: string) => {
     "Nov",
     "Dic",
   ];
-  return `${nombres[Number(mm) - 1]} ${y.slice(2)}`;
+  return `${nombres[Number(mm) - 1] ?? mm} ${(y ?? "").slice(2)}`;
 };
 
 const id = () => Math.random().toString(36).slice(2, 9);

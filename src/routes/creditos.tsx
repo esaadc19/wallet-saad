@@ -118,7 +118,7 @@ function Creditos() {
                 min={1}
                 max={45}
                 step={0.5}
-                onValueChange={([v]) => setTasa(v)}
+                onValueChange={(v) => setTasa(v[0]!)}
               />
             </div>
 
@@ -132,7 +132,7 @@ function Creditos() {
                 min={6}
                 max={240}
                 step={6}
-                onValueChange={([v]) => setMeses(v)}
+                onValueChange={(v) => setMeses(v[0]!)}
               />
             </div>
 
@@ -146,7 +146,7 @@ function Creditos() {
                 min={0}
                 max={2_000_000}
                 step={50_000}
-                onValueChange={([v]) => setExtra(v)}
+                onValueChange={(v) => setExtra(v[0]!)}
               />
             </div>
 
