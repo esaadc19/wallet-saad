@@ -75,7 +75,7 @@ function Inversion() {
     [inicial, aporte, anios, retorno, inflacion, incremento],
   );
 
-  const final = puntos[puntos.length - 1];
+  const final = puntos[puntos.length - 1]!;
   const rendimientos = final.valor - final.aportado;
   const metaCapital = capitalParaRenta(rentaDeseada);
   const avance = Math.min(1, final.valor / metaCapital);
@@ -91,8 +91,8 @@ function Inversion() {
     });
     return {
       perfil: p.nombre,
-      Valor: serie[serie.length - 1].valor,
-      "Valor real": serie[serie.length - 1].valorReal,
+      Valor: serie[serie.length - 1]!.valor,
+      "Valor real": serie[serie.length - 1]!.valorReal,
     };
   });
 
@@ -136,7 +136,7 @@ function Inversion() {
                 <Label>Años invirtiendo</Label>
                 <span className="numeric text-primary">{anios}</span>
               </div>
-              <Slider value={[anios]} min={1} max={40} step={1} onValueChange={([v]) => setAnios(v)} />
+              <Slider value={[anios]} min={1} max={40} step={1} onValueChange={(v) => setAnios(v[0]!)} />
             </div>
 
             <div className="space-y-3">
@@ -149,7 +149,7 @@ function Inversion() {
                 min={1}
                 max={25}
                 step={0.5}
-                onValueChange={([v]) => setRetorno(v)}
+                onValueChange={(v) => setRetorno(v[0]!)}
               />
               <div className="flex flex-wrap gap-2">
                 {PERFILES.map((p) => (
@@ -174,7 +174,7 @@ function Inversion() {
                 min={0}
                 max={15}
                 step={0.5}
-                onValueChange={([v]) => setInflacion(v)}
+                onValueChange={(v) => setInflacion(v[0]!)}
               />
             </div>
 
@@ -188,7 +188,7 @@ function Inversion() {
                 min={0}
                 max={15}
                 step={0.5}
-                onValueChange={([v]) => setIncremento(v)}
+                onValueChange={(v) => setIncremento(v[0]!)}
               />
             </div>
 

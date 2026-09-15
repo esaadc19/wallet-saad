@@ -87,7 +87,7 @@ const tooltipStyle = {
 
 function Panel() {
   const { movimientos, agregar, eliminar } = useMovimientos();
-  const [mesActivo, setMesActivo] = useState(MESES[MESES.length - 1]);
+  const [mesActivo, setMesActivo] = useState<string>(MESES[MESES.length - 1]!);
 
   const [tipo, setTipo] = useState<"ingreso" | "gasto">("gasto");
   const [categoria, setCategoria] = useState("Vivienda");
@@ -323,7 +323,7 @@ function Panel() {
                 variant={tipo === "gasto" ? "default" : "secondary"}
                 onClick={() => {
                   setTipo("gasto");
-                  setCategoria(CATEGORIAS_GASTO[0]);
+                  setCategoria(CATEGORIAS_GASTO[0]!);
                 }}
               >
                 Gasto
@@ -333,7 +333,7 @@ function Panel() {
                 variant={tipo === "ingreso" ? "default" : "secondary"}
                 onClick={() => {
                   setTipo("ingreso");
-                  setCategoria(CATEGORIAS_INGRESO[0]);
+                  setCategoria(CATEGORIAS_INGRESO[0]!);
                 }}
               >
                 Ingreso

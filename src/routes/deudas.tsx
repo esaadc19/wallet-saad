@@ -177,7 +177,7 @@ function Deudas() {
             min={0}
             max={3_000_000}
             step={50_000}
-            onValueChange={([v]) => setExtra(v)}
+            onValueChange={(v) => setExtra(v[0]!)}
           />
         </div>
       </section>
