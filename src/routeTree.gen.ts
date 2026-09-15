@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AsistenteRouteImport } from './routes/asistente'
 import { Route as CreditosRouteImport } from './routes/creditos'
 import { Route as DeudasRouteImport } from './routes/deudas'
 import { Route as InversionRouteImport } from './routes/inversion'
@@ -17,6 +18,11 @@ import { Route as InversionRouteImport } from './routes/inversion'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AsistenteRoute = AsistenteRouteImport.update({
+  id: '/asistente',
+  path: '/asistente',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CreditosRoute = CreditosRouteImport.update({
@@ -37,12 +43,14 @@ const InversionRoute = InversionRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/asistente': typeof AsistenteRoute
   '/creditos': typeof CreditosRoute
   '/deudas': typeof DeudasRoute
   '/inversion': typeof InversionRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/asistente': typeof AsistenteRoute
   '/creditos': typeof CreditosRoute
   '/deudas': typeof DeudasRoute
   '/inversion': typeof InversionRoute
@@ -50,20 +58,22 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/asistente': typeof AsistenteRoute
   '/creditos': typeof CreditosRoute
   '/deudas': typeof DeudasRoute
   '/inversion': typeof InversionRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/creditos' | '/deudas' | '/inversion'
+  fullPaths: '/' | '/asistente' | '/creditos' | '/deudas' | '/inversion'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/creditos' | '/deudas' | '/inversion'
-  id: '__root__' | '/' | '/creditos' | '/deudas' | '/inversion'
+  to: '/' | '/asistente' | '/creditos' | '/deudas' | '/inversion'
+  id: '__root__' | '/' | '/asistente' | '/creditos' | '/deudas' | '/inversion'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AsistenteRoute: typeof AsistenteRoute
   CreditosRoute: typeof CreditosRoute
   DeudasRoute: typeof DeudasRoute
   InversionRoute: typeof InversionRoute
@@ -76,6 +86,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/asistente': {
+      id: '/asistente'
+      path: '/asistente'
+      fullPath: '/asistente'
+      preLoaderRoute: typeof AsistenteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/creditos': {
@@ -104,6 +121,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AsistenteRoute: AsistenteRoute,
   CreditosRoute: CreditosRoute,
   DeudasRoute: DeudasRoute,
   InversionRoute: InversionRoute,
