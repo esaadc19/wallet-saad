@@ -130,3 +130,92 @@ export function useDeudas() {
 
   return { deudas, agregar, eliminar, actualizar };
 }
+
+/* ------------------------------ Inversiones ----------------------------- */
+
+export type TipoInversion =
+  | "CDT"
+  | "Fondo de inversión"
+  | "Acciones"
+  | "Cripto"
+  | "Fondo de pensiones"
+  | "Bienes raíces"
+  | "Otro";
+
+export const TIPOS_INVERSION: TipoInversion[] = [
+  "CDT",
+  "Fondo de inversión",
+  "Acciones",
+  "Cripto",
+  "Fondo de pensiones",
+  "Bienes raíces",
+  "Otro",
+];
+
+export type Inversion = {
+  id: string;
+  nombre: string;
+  tipo: TipoInversion;
+  invertido: number; // total de dinero puesto
+  valorActual: number; // valor de mercado hoy
+  tasaAnual: number; // rendimiento anual esperado (decimal, ej. 0.09)
+};
+
+const INVERSIONES_SEED: Inversion[] = [
+  {
+    id: id(),
+    nombre: "CDT Banco digital",
+    tipo: "CDT",
+    invertido: 8000000,
+    valorActual: 8480000,
+    tasaAnual: 0.108,
+  },
+  {
+    id: id(),
+    nombre: "Fondo indexado S&P 500",
+    tipo: "Fondo de inversión",
+    invertido: 6000000,
+    valorActual: 7350000,
+    tasaAnual: 0.11,
+  },
+  {
+    id: id(),
+    nombre: "Acciones Ecopetrol",
+    tipo: "Acciones",
+    invertido: 2500000,
+    valorActual: 2180000,
+    tasaAnual: 0.06,
+  },
+  {
+    id: id(),
+    nombre: "Pensión voluntaria",
+    tipo: "Fondo de pensiones",
+    invertido: 4200000,
+    valorActual: 4650000,
+    tasaAnual: 0.075,
+  },
+  {
+    id: id(),
+    nombre: "Bitcoin",
+    tipo: "Cripto",
+    invertido: 1500000,
+    valorActual: 2400000,
+    tasaAnual: 0.15,
+  },
+];
+
+export function useInversiones() {
+  const [inversiones, setInversiones] = usePersisted<Inversion[]>(
+    "fin.inversiones",
+    () => INVERSIONES_SEED,
+  );
+
+  const agregar = (inv: Omit<Inversion, "id">) =>
+    setInversiones((prev) => [...prev, { ...inv, id: id() }]);
+  const eliminar = (iid: string) =>
+    setInversiones((prev) => prev.filter((i) => i.id !== iid));
+  const actualizar = (iid: string, patch: Partial<Inversion>) =>
+    setInversiones((prev) => prev.map((i) => (i.id === iid ? { ...i, ...patch } : i)));
+
+  return { inversiones, agregar, eliminar, actualizar };
+}
