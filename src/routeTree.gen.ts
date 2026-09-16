@@ -14,6 +14,7 @@ import { Route as AsistenteRouteImport } from './routes/asistente'
 import { Route as CreditosRouteImport } from './routes/creditos'
 import { Route as DeudasRouteImport } from './routes/deudas'
 import { Route as InversionRouteImport } from './routes/inversion'
+import { Route as MisInversionesRouteImport } from './routes/mis-inversiones'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -40,6 +41,11 @@ const InversionRoute = InversionRouteImport.update({
   path: '/inversion',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MisInversionesRoute = MisInversionesRouteImport.update({
+  id: '/mis-inversiones',
+  path: '/mis-inversiones',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -47,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/creditos': typeof CreditosRoute
   '/deudas': typeof DeudasRoute
   '/inversion': typeof InversionRoute
+  '/mis-inversiones': typeof MisInversionesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByTo {
   '/creditos': typeof CreditosRoute
   '/deudas': typeof DeudasRoute
   '/inversion': typeof InversionRoute
+  '/mis-inversiones': typeof MisInversionesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,13 +70,33 @@ export interface FileRoutesById {
   '/creditos': typeof CreditosRoute
   '/deudas': typeof DeudasRoute
   '/inversion': typeof InversionRoute
+  '/mis-inversiones': typeof MisInversionesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/asistente' | '/creditos' | '/deudas' | '/inversion'
+  fullPaths:
+    | '/'
+    | '/asistente'
+    | '/creditos'
+    | '/deudas'
+    | '/inversion'
+    | '/mis-inversiones'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/asistente' | '/creditos' | '/deudas' | '/inversion'
-  id: '__root__' | '/' | '/asistente' | '/creditos' | '/deudas' | '/inversion'
+  to:
+    | '/'
+    | '/asistente'
+    | '/creditos'
+    | '/deudas'
+    | '/inversion'
+    | '/mis-inversiones'
+  id:
+    | '__root__'
+    | '/'
+    | '/asistente'
+    | '/creditos'
+    | '/deudas'
+    | '/inversion'
+    | '/mis-inversiones'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -77,6 +105,7 @@ export interface RootRouteChildren {
   CreditosRoute: typeof CreditosRoute
   DeudasRoute: typeof DeudasRoute
   InversionRoute: typeof InversionRoute
+  MisInversionesRoute: typeof MisInversionesRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -116,6 +145,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InversionRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/mis-inversiones': {
+      id: '/mis-inversiones'
+      path: '/mis-inversiones'
+      fullPath: '/mis-inversiones'
+      preLoaderRoute: typeof MisInversionesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -125,6 +161,7 @@ const rootRouteChildren: RootRouteChildren = {
   CreditosRoute: CreditosRoute,
   DeudasRoute: DeudasRoute,
   InversionRoute: InversionRoute,
+  MisInversionesRoute: MisInversionesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

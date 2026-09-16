@@ -6,6 +6,7 @@ import {
   PiggyBankIcon,
   ScaleIcon,
   SparklesIcon,
+  TrendingUpIcon,
 } from "lucide-react";
 
 const nav = [
@@ -13,6 +14,7 @@ const nav = [
   { to: "/creditos", label: "Créditos", icon: LandmarkIcon },
   { to: "/deudas", label: "Deudas", icon: ScaleIcon },
   { to: "/inversion", label: "Inversión", icon: PiggyBankIcon },
+  { to: "/mis-inversiones", label: "Mis inversiones", icon: TrendingUpIcon },
   { to: "/asistente", label: "Asistente", icon: SparklesIcon },
 ] as const;
 
