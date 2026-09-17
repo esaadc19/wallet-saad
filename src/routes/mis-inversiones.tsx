@@ -678,6 +678,7 @@ function SimuladorInversion() {
           </div>
 
           <div className="panel p-5 sm:col-span-2">
+            <h3 className="text-lg font-semibold">Tu meta de independencia</h3>
             <p className="mb-5 text-sm text-muted-foreground">
               Para recibir {currency(rentaDeseada)} al mes sin trabajar
             </p>
