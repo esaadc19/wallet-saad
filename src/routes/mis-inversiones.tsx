@@ -606,14 +606,14 @@ function SimuladorInversion() {
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" vertical={false} />
-                <XAxis dataKey="anio" stroke="var(--color-muted-foreground)" fontSize={11} />
+                <XAxis dataKey="anio" stroke="var(--color-muted-foreground)" fontSize={12} />
                 <YAxis
                   stroke="var(--color-muted-foreground)"
-                  fontSize={12}
+                  fontSize={13}
                   tickFormatter={(v: number) => `${(v / 1_000_000).toFixed(0)}M`}
                 />
                 <Tooltip contentStyle={tooltipStyle} formatter={(v: number) => currency(v)} />
-                <Legend wrapperStyle={{ fontSize: 11 }} />
+                <Legend wrapperStyle={{ fontSize: 12 }} />
                 <Area
                   type="monotone"
                   dataKey="Valor nominal"
