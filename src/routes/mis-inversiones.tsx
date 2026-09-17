@@ -470,10 +470,10 @@ function SimuladorInversion() {
   }));
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[340px_1fr]">
+    <div className="grid gap-6 lg:grid-cols-[300px_1fr]">
       <section className="panel h-fit p-5">
-        <h3 className="text-lg font-semibold">Tu plan de aportes</h3>
-        <div className="mt-5 space-y-6">
+        <h3 className="text-base font-semibold">Tu plan de aportes</h3>
+        <div className="mt-5 space-y-5">
           <div className="space-y-2">
             <Label htmlFor="inicial">Capital inicial</Label>
             <Input
