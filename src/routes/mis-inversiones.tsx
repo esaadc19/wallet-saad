@@ -685,7 +685,7 @@ function SimuladorInversion() {
             <p className="text-xs uppercase tracking-wider text-muted-foreground">
               Capital necesario
             </p>
-            <p className="numeric mt-1 break-words text-xl font-semibold text-gradient-primary sm:text-2xl">
+            <p className="numeric mt-1 whitespace-nowrap text-lg font-semibold text-gradient-primary sm:text-xl">
               {currency(metaCapital)}
             </p>
             <div className="mt-6 h-3 overflow-hidden rounded-full bg-secondary">
