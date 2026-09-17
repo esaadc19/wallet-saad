@@ -570,7 +570,7 @@ function SimuladorInversion() {
       </section>
 
       <div className="space-y-6">
-        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-4 sm:grid-cols-2">
           <Stat label="Valor final" value={currency(final.valor)} tone="positive" />
           <Stat label="Total aportado" value={currency(final.aportado)} />
           <Stat
@@ -685,7 +685,7 @@ function SimuladorInversion() {
             <p className="text-xs uppercase tracking-wider text-muted-foreground">
               Capital necesario
             </p>
-            <p className="numeric mt-1 text-3xl font-semibold text-gradient-primary">
+            <p className="numeric mt-1 text-2xl font-semibold text-gradient-primary sm:text-3xl">
               {currency(metaCapital)}
             </p>
             <div className="mt-6 h-3 overflow-hidden rounded-full bg-secondary">
