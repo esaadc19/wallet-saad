@@ -409,7 +409,7 @@ function MisInversiones() {
                 <XIcon className="size-5" />
               </button>
             </header>
-            <div className="flex-1 overflow-y-auto p-5">
+            <div className="flex-1 overflow-y-auto p-6 pb-10">
               <SimuladorInversion />
             </div>
           </aside>
