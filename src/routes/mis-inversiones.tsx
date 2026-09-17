@@ -518,7 +518,7 @@ function SimuladorInversion() {
                 <button
                   key={p.nombre}
                   onClick={() => setRetorno(p.retorno)}
-                  className="rounded-md bg-secondary px-2.5 py-1 text-xs font-medium text-secondary-foreground transition-colors hover:bg-muted"
+                  className="rounded-md bg-secondary px-3 py-1.5 text-xs font-medium text-secondary-foreground transition-colors hover:bg-muted"
                 >
                   {p.nombre} {p.retorno}%
                 </button>
