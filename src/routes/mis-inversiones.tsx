@@ -641,7 +641,7 @@ function SimuladorInversion() {
           </div>
         </div>
 
-        <div className="grid gap-6 lg:grid-cols-2">
+        <div className="grid gap-6 sm:grid-cols-2">
           <div className="panel p-5">
             <h3 className="text-lg font-semibold">Según tu perfil de riesgo</h3>
             <p className="mb-4 text-sm text-muted-foreground">
@@ -685,7 +685,7 @@ function SimuladorInversion() {
             <p className="text-xs uppercase tracking-wider text-muted-foreground">
               Capital necesario
             </p>
-            <p className="numeric mt-1 whitespace-nowrap text-lg font-semibold text-gradient-primary sm:text-xl">
+            <p className="numeric mt-1 text-2xl font-semibold text-gradient-primary sm:text-3xl">
               {currency(metaCapital)}
             </p>
             <div className="mt-6 h-3 overflow-hidden rounded-full bg-secondary">
