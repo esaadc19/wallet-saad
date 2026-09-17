@@ -641,7 +641,7 @@ function SimuladorInversion() {
           </div>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2">
+        <div className="space-y-6">
           <div className="panel p-5">
             <h3 className="text-lg font-semibold">Según tu perfil de riesgo</h3>
             <p className="mb-4 text-sm text-muted-foreground">
@@ -651,10 +651,10 @@ function SimuladorInversion() {
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={comparativa}>
                   <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" vertical={false} />
-                  <XAxis dataKey="perfil" stroke="var(--color-muted-foreground)" fontSize={12} />
+                  <XAxis dataKey="perfil" stroke="var(--color-muted-foreground)" fontSize={13} />
                   <YAxis
                     stroke="var(--color-muted-foreground)"
-                    fontSize={12}
+                    fontSize={13}
                     tickFormatter={(v: number) => `${(v / 1_000_000).toFixed(0)}M`}
                   />
                   <Tooltip
@@ -662,7 +662,7 @@ function SimuladorInversion() {
                     formatter={(v: number) => currency(v)}
                     cursor={{ fill: "var(--color-secondary)", opacity: 0.4 }}
                   />
-                  <Legend wrapperStyle={{ fontSize: 11 }} />
+                  <Legend wrapperStyle={{ fontSize: 12 }} />
                   <Bar dataKey="Valor" fill="var(--chart-1)" radius={[6, 6, 0, 0]} />
                   <Bar dataKey="Valor real" fill="var(--chart-2)" radius={[6, 6, 0, 0]} />
                 </BarChart>
