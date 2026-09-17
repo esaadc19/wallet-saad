@@ -15,7 +15,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { PlusIcon, Trash2Icon } from "lucide-react";
+import { CalculatorIcon, PlusIcon, Trash2Icon, XIcon } from "lucide-react";
 import { toast } from "sonner";
 
 import { AppShell } from "@/components/AppShell";
@@ -87,6 +87,7 @@ function MisInversiones() {
   const [invertido, setInvertido] = useState(1_000_000);
   const [valorActual, setValorActual] = useState(1_000_000);
   const [tasa, setTasa] = useState(8);
+  const [simOpen, setSimOpen] = useState(false);
 
   const resumen = useMemo(() => {
     const totalInvertido = inversiones.reduce((s, i) => s + i.invertido, 0);
@@ -143,8 +144,18 @@ function MisInversiones() {
   return (
     <AppShell
       title="Mis inversiones"
-      subtitle="Tu portafolio real: registra cada inversión, actualiza su valor y mira cómo se distribuye y cuánto te ha rendido. Más abajo, simula cómo crecerían tus aportes nuevos."
+      subtitle="Tu portafolio real: registra cada inversión, actualiza su valor y mira cómo se distribuye y cuánto te ha rendido. ¿Quieres proyectar aportes nuevos? Abre el simulador."
     >
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
+        <p className="text-sm text-muted-foreground">
+          Gestiona tu portafolio y simula cómo crecerían tus aportes con interés compuesto.
+        </p>
+        <Button onClick={() => setSimOpen(true)} className="gap-2">
+          <CalculatorIcon className="size-4" />
+          Simulador de inversión
+        </Button>
+      </div>
+
       <div className="grid gap-6 lg:grid-cols-[340px_1fr]">
         <section className="panel h-fit p-5">
           <h2 className="text-lg font-semibold">Registrar inversión</h2>
@@ -369,16 +380,41 @@ function MisInversiones() {
         </div>
       </div>
 
-      <div className="mt-12">
-        <div className="mb-6 border-t border-border/60 pt-8">
-          <h2 className="text-2xl font-semibold tracking-tight">Simulador de inversión</h2>
-          <p className="mt-1 max-w-2xl text-sm text-muted-foreground">
-            Mira cómo el interés compuesto multiplica tus aportes, cuánto se come la
-            inflación y qué capital necesitas para vivir de tus rentas.
-          </p>
-        </div>
-        <SimuladorInversion />
-      </div>
+      {/* Panel lateral del simulador */}
+      {simOpen ? (
+        <>
+          <div
+            className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm"
+            onClick={() => setSimOpen(false)}
+            aria-hidden="true"
+          />
+          <aside
+            className="fixed inset-y-0 right-0 z-50 flex w-full max-w-3xl flex-col border-l border-border bg-background shadow-2xl"
+            role="dialog"
+            aria-label="Simulador de inversión"
+          >
+            <header className="flex items-start justify-between gap-4 border-b border-border/70 p-5">
+              <div>
+                <h2 className="text-2xl font-semibold tracking-tight">Simulador de inversión</h2>
+                <p className="mt-1 max-w-xl text-sm text-muted-foreground">
+                  Mira cómo el interés compuesto multiplica tus aportes, cuánto se come la
+                  inflación y qué capital necesitas para vivir de tus rentas.
+                </p>
+              </div>
+              <button
+                onClick={() => setSimOpen(false)}
+                className="grid size-9 shrink-0 place-items-center rounded-lg text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+                aria-label="Cerrar simulador"
+              >
+                <XIcon className="size-5" />
+              </button>
+            </header>
+            <div className="flex-1 overflow-y-auto p-5">
+              <SimuladorInversion />
+            </div>
+          </aside>
+        </>
+      ) : null}
     </AppShell>
   );
 }
@@ -534,7 +570,7 @@ function SimuladorInversion() {
       </section>
 
       <div className="space-y-6">
-        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-4 sm:grid-cols-2">
           <Stat label="Valor final" value={currency(final.valor)} tone="positive" />
           <Stat label="Total aportado" value={currency(final.aportado)} />
           <Stat
@@ -605,7 +641,7 @@ function SimuladorInversion() {
           </div>
         </div>
 
-        <div className="grid gap-6 lg:grid-cols-2">
+        <div className="grid gap-6 sm:grid-cols-2">
           <div className="panel p-5">
             <h3 className="text-lg font-semibold">Según tu perfil de riesgo</h3>
             <p className="mb-4 text-sm text-muted-foreground">
@@ -641,7 +677,7 @@ function SimuladorInversion() {
             </div>
           </div>
 
-          <div className="panel p-5">
+          <div className="panel p-5 sm:col-span-2">
             <h3 className="text-lg font-semibold">Tu meta de independencia</h3>
             <p className="mb-5 text-sm text-muted-foreground">
               Para recibir {currency(rentaDeseada)} al mes sin trabajar
@@ -649,7 +685,7 @@ function SimuladorInversion() {
             <p className="text-xs uppercase tracking-wider text-muted-foreground">
               Capital necesario
             </p>
-            <p className="numeric mt-1 text-3xl font-semibold text-gradient-primary">
+            <p className="numeric mt-1 text-2xl font-semibold text-gradient-primary sm:text-3xl">
               {currency(metaCapital)}
             </p>
             <div className="mt-6 h-3 overflow-hidden rounded-full bg-secondary">

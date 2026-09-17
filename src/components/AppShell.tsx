@@ -3,7 +3,6 @@ import type { ReactNode } from "react";
 import {
   ChartPieIcon,
   LandmarkIcon,
-  PiggyBankIcon,
   ScaleIcon,
   SparklesIcon,
   TrendingUpIcon,
@@ -13,7 +12,6 @@ const nav = [
   { to: "/", label: "Panel", icon: ChartPieIcon },
   { to: "/creditos", label: "Créditos", icon: LandmarkIcon },
   { to: "/deudas", label: "Deudas", icon: ScaleIcon },
-  { to: "/inversion", label: "Inversión", icon: PiggyBankIcon },
   { to: "/mis-inversiones", label: "Mis inversiones", icon: TrendingUpIcon },
   { to: "/asistente", label: "Asistente", icon: SparklesIcon },
 ] as const;
