@@ -389,7 +389,7 @@ function MisInversiones() {
             aria-hidden="true"
           />
           <aside
-            className="fixed inset-y-0 right-0 z-50 flex w-full max-w-3xl flex-col border-l border-border bg-background shadow-2xl"
+            className="fixed inset-y-0 right-0 z-50 flex w-full max-w-5xl flex-col border-l border-border bg-background shadow-2xl"
             role="dialog"
             aria-label="Simulador de inversión"
           >
@@ -409,7 +409,7 @@ function MisInversiones() {
                 <XIcon className="size-5" />
               </button>
             </header>
-            <div className="flex-1 overflow-y-auto p-5">
+            <div className="flex-1 overflow-y-auto p-6 pb-10">
               <SimuladorInversion />
             </div>
           </aside>
@@ -470,10 +470,10 @@ function SimuladorInversion() {
   }));
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[340px_1fr]">
+    <div className="grid gap-6 lg:grid-cols-[300px_1fr]">
       <section className="panel h-fit p-5">
-        <h3 className="text-lg font-semibold">Tu plan de aportes</h3>
-        <div className="mt-5 space-y-6">
+        <h3 className="text-base font-semibold">Tu plan de aportes</h3>
+        <div className="mt-5 space-y-5">
           <div className="space-y-2">
             <Label htmlFor="inicial">Capital inicial</Label>
             <Input
@@ -518,7 +518,7 @@ function SimuladorInversion() {
                 <button
                   key={p.nombre}
                   onClick={() => setRetorno(p.retorno)}
-                  className="rounded-md bg-secondary px-2.5 py-1 text-xs font-medium text-secondary-foreground transition-colors hover:bg-muted"
+                  className="rounded-md bg-secondary px-3 py-1.5 text-xs font-medium text-secondary-foreground transition-colors hover:bg-muted"
                 >
                   {p.nombre} {p.retorno}%
                 </button>
@@ -606,14 +606,14 @@ function SimuladorInversion() {
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" vertical={false} />
-                <XAxis dataKey="anio" stroke="var(--color-muted-foreground)" fontSize={11} />
+                <XAxis dataKey="anio" stroke="var(--color-muted-foreground)" fontSize={12} />
                 <YAxis
                   stroke="var(--color-muted-foreground)"
-                  fontSize={12}
+                  fontSize={13}
                   tickFormatter={(v: number) => `${(v / 1_000_000).toFixed(0)}M`}
                 />
                 <Tooltip contentStyle={tooltipStyle} formatter={(v: number) => currency(v)} />
-                <Legend wrapperStyle={{ fontSize: 11 }} />
+                <Legend wrapperStyle={{ fontSize: 12 }} />
                 <Area
                   type="monotone"
                   dataKey="Valor nominal"
@@ -641,7 +641,7 @@ function SimuladorInversion() {
           </div>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2">
+        <div className="space-y-6">
           <div className="panel p-5">
             <h3 className="text-lg font-semibold">Según tu perfil de riesgo</h3>
             <p className="mb-4 text-sm text-muted-foreground">
@@ -651,10 +651,10 @@ function SimuladorInversion() {
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={comparativa}>
                   <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" vertical={false} />
-                  <XAxis dataKey="perfil" stroke="var(--color-muted-foreground)" fontSize={12} />
+                  <XAxis dataKey="perfil" stroke="var(--color-muted-foreground)" fontSize={13} />
                   <YAxis
                     stroke="var(--color-muted-foreground)"
-                    fontSize={12}
+                    fontSize={13}
                     tickFormatter={(v: number) => `${(v / 1_000_000).toFixed(0)}M`}
                   />
                   <Tooltip
@@ -662,7 +662,7 @@ function SimuladorInversion() {
                     formatter={(v: number) => currency(v)}
                     cursor={{ fill: "var(--color-secondary)", opacity: 0.4 }}
                   />
-                  <Legend wrapperStyle={{ fontSize: 11 }} />
+                  <Legend wrapperStyle={{ fontSize: 12 }} />
                   <Bar dataKey="Valor" fill="var(--chart-1)" radius={[6, 6, 0, 0]} />
                   <Bar dataKey="Valor real" fill="var(--chart-2)" radius={[6, 6, 0, 0]} />
                 </BarChart>
@@ -677,7 +677,7 @@ function SimuladorInversion() {
             </div>
           </div>
 
-          <div className="panel p-5 sm:col-span-2">
+          <div className="panel p-5">
             <h3 className="text-lg font-semibold">Tu meta de independencia</h3>
             <p className="mb-5 text-sm text-muted-foreground">
               Para recibir {currency(rentaDeseada)} al mes sin trabajar
