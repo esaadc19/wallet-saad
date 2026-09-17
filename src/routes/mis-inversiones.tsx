@@ -389,7 +389,7 @@ function MisInversiones() {
             aria-hidden="true"
           />
           <aside
-            className="fixed inset-y-0 right-0 z-50 flex w-full max-w-3xl flex-col border-l border-border bg-background shadow-2xl"
+            className="fixed inset-y-0 right-0 z-50 flex w-full max-w-5xl flex-col border-l border-border bg-background shadow-2xl"
             role="dialog"
             aria-label="Simulador de inversión"
           >
